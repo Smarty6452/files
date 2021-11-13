@@ -1,0 +1,263 @@
+<div class="activityMySubjects">
+    <!-- <v-card style="box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1); border-radius: 20px;">
+        <v-card-title>
+            {{selectedSemester.semName}}
+        </v-card-title>
+        <v-card-text>
+            <v-data-table
+            hide-default-footer
+            :items='subjects'
+            :headers='headers'>
+            <template v-slot:item.subjectName="{ item }">
+              {{item.subjectName}}
+            </template>
+            <template v-slot:item.division="{ item }">
+              {{item.division + item.batch}}
+            </template>
+            <template v-slot:item.lectureType="{ item }">
+              {{item.lectureType}}
+            </template>
+            <template v-slot:item.actions="{ item }">
+              <v-menu offset-x>
+                <template v-slot:activator="{ on }">
+                <v-btn v-on="on" fab small text>
+                    <v-icon color='black'>mdi-dots-vertical</v-icon>
+                </v-btn>
+                </template>
+                <v-list>
+                  <v-list-item>
+                    <v-list-item-title style="cursor: pointer;" @click=''><v-icon>mdi-download</v-icon>Attendance Analysis</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-title style="cursor: pointer;" @click=''><v-icon>mdi-download</v-icon>Planning</v-list-item-title>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-list-item-title style="cursor: pointer;" @click=''><v-icon>mdi-download</v-icon>Assignment</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+            </v-menu>
+            </template>
+            </v-data-table>
+        </v-card-text>
+    </v-card> -->
+    
+    <v-row v-if='!isMobileView'>
+      <v-col cols=6 v-for='subject,i in subjects' :key='i'>
+        
+        <!-- first card  -->
+
+        <div v-if='(i%9) === 0'>
+
+          <v-card  <div class="Rectangle-270">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0;">{{subject.subjectName}}</v-card-title>
+            <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title>
+            <div class="Rectangle-614">
+  
+               <img src="../../Assets/Images/assignment-24-px@2x.png"
+                
+               class="assignment-24px">
+  
+              <span class="Assignment" @click='gotoAssignments(subject)'>
+               
+                Assignment
+        
+              </span>
+              
+  
+              <img src="../../Assets/Images/import-contacts-24-px.png"
+             
+              class="import_contacts-24px">
+  
+              <span class="Courses" @click="gotoStudyMaterial">
+               
+  
+                Courses
+              </span>
+  
+  
+              <img src="../../Assets/Images/playlist-add-check-24-px.png"
+               
+                class="playlist_add_check-24px" style="margin: 2px 3px -9px 0px;" >
+  
+              <span class="Attendance" @click="gotoAttendanceAnalysis" >
+                
+                Attendance
+               </span>
+              
+  
+               
+              </div>
+              </div>
+  
+          </v-card>
+  
+          </v-card>
+
+        </div>
+
+
+
+
+<!-- second entry --------   -------------------------- -->
+
+        <div v-if='(i%9) === 1'>
+          <v-card @click='gotoAssignments(subject)' style="cursor: pointer; border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20838.png?alt=media&token=5e3925a9-3cc8-49b7-a283-0db0c225fc4a);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0;">{{subject.subjectName}}</v-card-title>
+            <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title>
+
+          </v-card>
+        </div>
+        <div v-if='(i%9) === 2'>
+          <v-card @click='gotoAssignments(subject)' style="cursor: pointer; border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20840.png?alt=media&token=02190c7e-4364-42b7-9c7f-a0ab6cf90403);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0;">{{subject.subjectName}}</v-card-title>
+            <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title>
+          </v-card>
+        </div>
+        <div v-if='(i%9) === 3'>
+          <v-card @click='gotoAssignments(subject)' style="cursor: pointer; border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20842.png?alt=media&token=7f4c0e49-280c-4b34-911b-dc11563500fc);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0;">{{subject.subjectName}}</v-card-title>
+            <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title>
+          </v-card>
+        </div>
+        <div v-if='(i%9) === 4'>
+          <v-card @click='gotoAssignments(subject)' style="cursor: pointer; border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20844.png?alt=media&token=9e56e2e9-7508-48d1-8427-3cbe41d57c95);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0;">{{subject.subjectName}}</v-card-title>
+            <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title>
+          </v-card>
+        </div>
+        <div v-if='(i%9) === 5'>
+          <v-card @click='gotoAssignments(subject)' style="cursor: pointer; border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20846.png?alt=media&token=f27f7952-64cd-4b02-9991-b596ae9b8c92);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0;">{{subject.subjectName}}</v-card-title>
+            <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title>
+          </v-card>
+        </div>
+        <div v-if='(i%9) === 6'>
+          <v-card @click='gotoAssignments(subject)' style="cursor: pointer; border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20848.png?alt=media&token=a9b93115-58db-4cac-86b1-161839cd5742);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0;">{{subject.subjectName}}</v-card-title>
+            <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title>
+          </v-card>
+        </div>
+        <div v-if='(i%9) === 7'>
+          <v-card @click='gotoAssignments(subject)' style="cursor: pointer; border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20851.png?alt=media&token=220d525a-72d5-4480-9be7-b98391a63a8d);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0;">{{subject.subjectName}}</v-card-title>
+            <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title>
+          </v-card>
+        </div>
+        <div v-if='(i%9) === 8'>
+          <v-card @click='gotoAssignments(subject)' style="cursor: pointer; border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20853.png?alt=media&token=87f86d3c-a048-4a78-bd31-6f7115a91ce4);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0;">{{subject.subjectName}}</v-card-title>
+            <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title>
+          </v-card>
+        </div>
+      </v-col>
+    </v-row>
+
+    <!-- mobile view  -->  
+
+    <v-row v-else>
+      <v-col cols=12 v-for='subject,i in subjects' :key='i'>
+        <div v-if='(i%9) === 0'>
+          <div class="Rectangle-27" width="400px" style="margin: 4px;"> 
+          <v-card   
+         
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0;">{{subject.subjectName}}</v-card-title>
+            <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;margin: 0px 0px 0px -3px;">{{subject.lectureType}}</strong></v-card-title>
+            <div class="mobile1" >
+  
+               <img src="../../Assets/Images/assignment-24-px.png"
+                
+
+               class="assignment-24png">
+  
+              <span class="Assignment1" @click='gotoAssignments(subject)'>
+               
+                Assignment
+        
+              </span>
+              
+  
+              <img src="../../Assets/Images/import-contacts-24-px.png"
+              
+              class="import_contacts-24png">
+  
+              <span class="Courses1" @click="gotoStudyMaterial">
+               
+  
+                Courses
+              </span>
+  
+  
+              <img src="../../Assets/Images/playlist-add-check-24-px.png"
+              
+                class="playlist_add_check-24png" style="margin: 10px 4px -9px 0px;" >
+  
+              <span class="Attendance1" @click="gotoAttendanceAnalysis" >
+                
+                Attendance
+               </span>
+              
+  
+            </div>
+
+          </div>
+  
+          </v-card>
+
+         
+          </v-card>
+
+        </div>
+
+
+
+        <div v-if='(i%9) === 1'>
+          <v-card @click='gotoAssignments2(subject)' style="border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20838.png?alt=media&token=5e3925a9-3cc8-49b7-a283-0db0c225fc4a);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0; font-size: medium;">{{subject.subjectName}} | {{subject.lectureType}}</v-card-title>
+            <!-- <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title> -->
+          </v-card>
+        </div>
+        <div v-if='(i%9) === 2'>
+          <v-card @click='gotoAssignments2(subject)' style="border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20840.png?alt=media&token=02190c7e-4364-42b7-9c7f-a0ab6cf90403);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0; font-size: medium;">{{subject.subjectName}} | {{subject.lectureType}}</v-card-title>
+            <!-- <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title> -->
+          </v-card>
+        </div>
+        <div v-if='(i%9) === 3'>
+          <v-card @click='gotoAssignments2(subject)' style="border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20842.png?alt=media&token=7f4c0e49-280c-4b34-911b-dc11563500fc);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0; font-size: medium;">{{subject.subjectName}} | {{subject.lectureType}}</v-card-title>
+            <!-- <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title> -->
+          </v-card>
+        </div>
+        <div v-if='(i%9) === 4'>
+          <v-card @click='gotoAssignments2(subject)' style="border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20844.png?alt=media&token=9e56e2e9-7508-48d1-8427-3cbe41d57c95);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0; font-size: medium;">{{subject.subjectName}} | {{subject.lectureType}}</v-card-title>
+            <!-- <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title> -->
+          </v-card>
+        </div>
+        <div v-if='(i%9) === 5'>
+          <v-card @click='gotoAssignments2(subject)' style="border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20846.png?alt=media&token=f27f7952-64cd-4b02-9991-b596ae9b8c92);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0; font-size: medium;">{{subject.subjectName}} | {{subject.lectureType}}</v-card-title>
+            <!-- <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title> -->
+          </v-card>
+        </div>
+        <div v-if='(i%9) === 6'>
+          <v-card @click='gotoAssignments2(subject)' style="border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20848.png?alt=media&token=a9b93115-58db-4cac-86b1-161839cd5742);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0; font-size: medium;">{{subject.subjectName}} | {{subject.lectureType}}</v-card-title>
+            <!-- <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title> -->
+          </v-card>
+        </div>
+        <div v-if='(i%9) === 7'>
+          <v-card @click='gotoAssignments2(subject)' style="border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20851.png?alt=media&token=220d525a-72d5-4480-9be7-b98391a63a8d);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0; font-size: medium;">{{subject.subjectName}} | {{subject.lectureType}}</v-card-title>
+            <!-- <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title> -->
+          </v-card>
+        </div>
+        <div v-if='(i%9) === 8'>
+          <v-card @click='gotoAssignments2(subject)' style="border-radius: 10px; height: 85px; width: 455px; background-image: url(https://firebasestorage.googleapis.com/v0/b/finalinprospect.appspot.com/o/subjectBackgrounds%2FGroup%20853.png?alt=media&token=87f86d3c-a048-4a78-bd31-6f7115a91ce4);">
+            <v-card-title style="color: white; margin-left: 110px; padding-bottom: 0; font-size: medium;">{{subject.subjectName}} | {{subject.lectureType}}</v-card-title>
+            <!-- <v-card-title style="color: white; margin-left: 126px; padding: 0;"><strong style="font-size: small;">{{subject.lectureType}}</strong></v-card-title> -->
+          </v-card>
+        </div>
+      </v-col>
+    </v-row>
+</div>
